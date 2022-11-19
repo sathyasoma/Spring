@@ -1,0 +1,605 @@
+https://www.edureka.co/blog/docker-commands/#psa
+
+
+docker images are templates(files(which has info) required to create container) used to create docker containers
+
+docker container is nothing but runtime instance of docker image
+
+docker hub is nothing but git repository for docker images 
+
+hello-world
+
+Docker registry  is a storage  component for docker images
+
+
+Docker Compose:
+------------------
+  lets say there are multiple applications are running in different containers so if you want start 
+  all at once will use  docker compose command
+  
+	*docker-composeup
+
+
+
+
+
+DOCKER COMMANDS:
+================
+
+
+docker version -->info about docker client and docker server(docker engine)
+
+docker -v / docker --version -->to know the version of docker 
+
+docker info -->to know complete/detailed  info about docker like the no of images,containers running/stopped .... 
+
+docker --help -->to know all other commands info
+
+
+docker images --help -->to know the different options with docker images ...
+
+docker login -->to login into docker hub
+
+
+
+docker ps -->list containers only which are running 
+
+docker ps -a -->list all 
+
+docker start "container id" -->to start container
+
+docker stop "container id" -->to stop container 
+
+docker run "image name" -->to run docker image 
+
+docker image ls -->to get list of images 
+
+docker rmi "id of image"-->to remove image
+
+docker rm "id of container"--to remove container  
+
+docker stats -->this will give details of running container like memory usage ,i/o ..etc 
+
+docker system df-->to know the disk usage docker 
+
+docker system prune -->to remove container and images TC
+
+
+
+Docker File:
+============
+Docker file is a text file with instructions to build image ,Automation of docker image creation.
+
+
+Step1:create a file named Dockerfile  (when we run docker build command,docker searches for this file)
+
+Step2:Add instructions in docker file
+
+Step3:Build Dockerfile to create image
+
+Step4 :Run image to create container
+
+
+
+Reference for Dockerfile:
+=========================
+https://www.learnitguide.net/2018/06/dockerfile-explained-with-examples.html
+
+https://docs.docker.com/engine/reference/builder/#environment-replacement
+
+https://github.com/wsargent/docker-cheat-sheet#dockerfile
+
+docker Commit:https://www.youtube.com/watch?v=pSVxvQY-i9g
+
+Docker Architecture:
+--------------------
+
+
+*intially docker was created like monolithic application
+
+
+
+
+
+Main component in docker is docker engine(the s/w which we installed we can call ..)
+
+
+
+			client 
+			dockercli       run/pull/rm ... updating image is not possible
+				|
+			Rest api
+				|
+			docker server(docker daemon)	
+
+			
+			with rest api calls to the server we can manage data volumes ,container,images,network...
+			
+			
+			
+			
+
+Steps to get mysql: 
+===================
+
+download mysql image 
+
+docker pull mysql
+
+
+
+
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:8.0
+
+
+
+
+go to current directory 
+
+docker build . -t users-mysql    // repeat after stoping
+
+
+
+docker run command to run container  // repeat after stoping
+ 
+docker run -p 8086:8086 --name users-mysql --link mysql-standalone:mysql -d users-mysql
+
+docker container ls
+
+docker logs mysqlcon
+
+
+docker ps -a
+ to remove forcefully
+docker rm -f "container name"
+
+to stop container 
+
+docker stop users-mysql(container  name )
+
+
+docker container rm "id"
+
+
+to remove image
+
+docker container rm 5805dd1ed8a2
+//remove container ...
+docker image rm users-mysql
+
+
+	https://stackify.com/docker-image-vs-container-everything-you-need-to-know/
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introduction to Kubernetes	"What,  Why and Features of Kubernetes, Kubernetes Architecture
+Kubernetes Cluster, Master, Node
+Kubernetes Architecture 
+Kubernetes Basics Modules ( 
+Create a Kubernetes Cluster, Deploy an App, Explore your App, Expose your app publicly, 
+Scale up your App, Update your app)"
+Kubernetes Demonstration	Deploy the container image created earlier on A Kubernetes 
+cluster. 
+Use an open source framework like Minikube for a standalone deployment
+	Kubernetes Cluster, Master, Node
+	
+
+	
+Kubernates:
+------------
+container management tool
+
+it was developed by google lab (later doneted to CNCF(cloud native computing foundation))
+
+it is open source and written "go"lang
+
+K8s	
+	
+	container manegement /Orchestration tool
+	
+	
+	container management tool manages containerized application
+
+
+	container management tool or engine automates deploying,scaling,scheduling, load balencing and managing containerized applications(the applications available on a docker container platform like docker..) on a group of servers..
+	
+	
+	kubernetes   DockerSwarm   Apache mesos marathon 
+
+
+		
+
+containerized applications:
+
+
+container platform 
+
+	docker is a tool  designed  to make  it easier to deploy  and run applications by using container,containers allow a developer to package up an application with all of the parts  it needs such as lib and other dependencies  and ship it all out as one package ...
+
+
+where kubernetes comes into picture ...
+
+	organizations  have to use multiple containers  to 
+	ensure availability 
+	load balancing 
+	scale up down based on user load 
+	
+	
+	
+	
+					       
+kubernetes   
+DockerSwarm           DEPLOYING 
+ApacheMesosMarathon   SCHEDULING
+					  SCALING 
+CMT		====>		  LOAD BALANCING      ==>    CONTAINERS
+					  BATCH EXECUTION
+					  ROLLBACKS
+					  MONITORING
+		
+
+	
+
+
+DOCKER - CREATES CONTAINERS
+KUBERNETES - MANAGES CONTAINERS
+
+
+
+Features:
+
+Automatic bin packing
+Service discovery & load balancing
+Storage orchestration
+Self-healing
+
+Automatic bin packing
+----------------------
+* we have 5 servers  each having 10gb of memory 
+
+* we have list of jobs to run on these 5 servers 
+
+* every job has difference resource(memory) requirement ..
+
+kubernates will take care of packaging these jobs(containers) in bins(servers)in most efficient way 
+
+Automatically places containers based on their resource requirements  
+like CPU & Memory (RAM), while not sacrificing availability Saves resources.
+
+
+
+*in kubernates we donot intreact  containers directly,the containers wrapped inside a functional unit called as POD(it can have 1 to n number of containers ..),pods are host inside node(it can of 1 or many number of pods) 
+
+
+* when you specify a pod you can optionally specify how much CPU and memory(RAM) each containers needs  
+
+Service discover & load balancing
+----------------------------------
+A pod containse
+
+	* an application container(or in some cases,multiple containers)
+	* storage resources(single volume for all containers inside pod ) 
+	* every pod will have unique id
+	
+Pods that have the same  set of functions are abstracted  into sets,called services
+
+A kubernate service is a set of pods that work together	...
+
+Kubernetes gives Pods their own IP addresses and a single DNS name for a set of Pods, and can load-balance across them
+
+With this system(by providing unique IP and dns name to the service), Kubernetes has control over network and communication between pods and can load load balance across them
+
+
+Storage Orchestration:
+---------------------
+	containers runnig inside  a pod  may need to store data 
+	
+	pods can have a storage  volumes
+	
+	usually a single volume is shared with in all the containers in a pod 
+		
+	
+Kubernetes allows to mount the storage system of your choice
+Local
+Cloud (AWS)
+Network (NFS)
+
+Self-healing
+If a container fails - restarts container
+If node dies - replaces and reschedule containers on other nodes
+If container does not respond to user defined health check - kills container
+This is taken care by Kubernetes  ReplicationController
+
+=======================================================================
+ 
+Automated rollouts and rollbacks
+Secret & configuration management
+Batch execution
+Horizontal scaling
+
+
+
+Automated rollouts and rollbacks:
+----------------------------------
+
+Rollout: deploy changes to the application or its configuration
+Rollback: revert the changes & restore to the previous state
+Kubernetes ensures there is no downtime during this process
+
+
+Secret & configuration management
+
+
+Secret :in kubernates sensitive data like passwords,keys,tokens are handled using secrets.
+secret  is kubernetes object,created outside pods & containers 
+configmaps  is kubernetes object,created outside pods & containers 
+config maps:in kubernates configurations are handled using config maps.
+
+both secret and configmaps makes sansitive data/configuration portable and easy to manage .
+
+Kubernetes manages secrets and configuration details for an application separately from the container image,
+
+Deploy and update secrets and application configuration without rebuilding your image and without exposing secrets in your stack configuration.
+
+
+secrets and configurations are stored  in ETCD ,ETCD is a key-value datastore(database) 
+
+for secret the max size 1 mb
+
+
+Batch execution
+Kubernetes supports batch execution, long-running jobs, and replaces failed containers
+
+Horizontal scaling
+In Kubernetes, we can scale up(to create more replicas of containers /incresing the containers) or down(to kill the containers if not required) the containers 
+ - using commands
+ - from the dashboard (kubernetes ui)
+ - automatically based on CPU usage
+
+
+
+
+
+Basic Architecture of Kubernetes
+==================================
+An overview of Kubernetes components 
+
+The basic architecture of Kubernetes
+
+What is Master, Worker, Pods, Cluster
+
+
+				team member 1
+
+
+Manager         team member 2       ==>team
+
+
+				team member n
+
+
+
+				worker node 1
+
+
+Master          worker node 2       ==>cluster 
+
+
+				worker node n
+
+					workers 				
+
+
+
+When you deploy Kubernetes, you get a cluster
+
+A cluster is a set of machines, called nodes
+
+
+A cluster has at least one worker node and at least one master node
+
+In earlier days of Kubernetes, worker nodes were called minions
+
+
+In Kubernetes, every cluster has at least one master node and at least one worker node
+
+There can be more than one master nodes in a cluster to provide a cluster with failover and high availability
+
+There can be multiple clusters in Kubernetes architecture
+
+
+
+
+The worker node(s) host the pods that are the components of the application
+
+The master node(s) manages the worker nodes and the pods in the cluster
+
+In a Cluster Kubernetes supports:
+ No more than 5000 nodes
+ No more than 150000 total pods
+ No more than 300000 total containers
+ No more than 100 pods per node
+
+
+https://kubernetes.io/docs/setup/best-practices/cluster-large/
+
+
+
+Master node:
+-----------
+
+responsible for managing the cluster 
+
+monitor  nodes and pods
+
+when a node fails ,moves the work load  of failed node to another work node.
+
+4 Components of Master node
+
+API Server - for all communications ( JSON over HTTP API)
+
+
+
+user can interact with these api's / call these api's from dashboard Ui
+Kubectl(command line tool ,written in go lang),UI(kubernetes dashboard)
+
+Scheduler - schedules pods on nodes
+Controller Manager - runs controllers
+Etcd - open source database , distributed key-value database from CoreOS
+
+
+3 Components of Worker node
+kubelet
+kube-proxy
+Container runtime
+
+Addons for DNS, Dashboard, monitoring, logging etc
+	
+	
+	kubectl-->is command line tool which helps us to interact with kubernetes cluster 
+	
+	You can install and use Kubernetes
+On a personal computer/laptop
+On any physical/virtual machine or servers
+As a cloud service
+
+Options to Use/Install Kubernetes
+
+Online Kubernetes labs
+
+Kubernetes Playground
+https://www.katacoda.com/courses/kube...
+
+Play with K8s
+https://labs.play-with-k8s.com/
+
+Play with Kubernetes Classroom
+https://training.play-with-kubernetes...
+
+
+Kubernetes installation tools
+
+Minikube - https://kubernetes.io/docs/setup/lear...
+
+Kubeadm - https://kubernetes.io/docs/setup/prod...
+
+
+Cloud based Kubernetes services
+
+GKE - Google Kubernetes Engine
+
+AKS - Azure Kubernetes Service
+
+Amazon EKS 
+	
+	
+	What is Minikube:
+	--------------------
+	
+open-source tool
+to run Kubernetes locally on your system
+runs a single-node Kubernetes cluster inside a VM on your system 
+Minikube is a tool that helps to create a single node Kubernetes cluster running in a VM on top of your laptop
+
+Open-source tool
+Runs single node K8s cluster
+Inside a VM
+On your OS
+for testing, learning ...
+	
+	
+Installation:
+================	
+	
+	How to start Minikube
+How to run Kubernetes via Minikube
+Commands:
+minikube version
+minikube help
+minikube start    to start a cluster 
+minikube status
+minikube service
+minikube stop
+minikube delete
+
+kubectl get nodes
+kubectl get pods
+kubectl create
+kubectl expose
+kubectl delete
+
+Ref - https://kubernetes.io/docs/tasks/tool...
+
+https://minikube.sigs.k8s.io/docs/start/
+
+
+
+Demo Example 
+
+https://kubernetes.io/docs/tutorials/hello-minikube/
+
+
+
+STEPS
+Check  - virtualization is supported
+
+Step 1 - Install kubectl
+brew install kubectl
+
+Step 2 - Install hyperkit (virtualbox, VMware fusion)
+brew install hyperkit
+
+Step 3 - Install minikube
+brew install minikube
+minikube version
+minikube help
+
+Step 4 - Start minikube
+minikube start
+minikube status
+kubectl get nodes
+kubectl get pods
+
+Running Kubernetes via Minikube
+
+Step 1 - Create a Kubernetes Deployment using an existing image
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+
+Step 2 - Expose the deployment as a service 
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+Step 3 - Check the nodes and pods
+kubectl get nodes
+kubectl get pods
+
+Step 4 - Get URL of the service
+minikube service hello-minikube --url
+
+Step 5 - Delete service and deployment
+kubectl delete services hello-minikube
+kubectl delete deployment hello-minikube
+
+Step 6 - Stop minikube cluster
+minikube stop
+
+Step 7 - Delete minikube cluster
+minikube delete
+	
+	
+	
+	
+	minikube 
+	
+	
+	
+	

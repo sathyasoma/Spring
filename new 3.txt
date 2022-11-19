@@ -1,0 +1,1381 @@
+corejava:
+--------
+lanagugae:
+      communication between two persons
+	              (english,telugu,hindi)==>general lang
+programming lang:
+   communication between machine
+      
+	  byte code 0s 1s
+   
+   softwares/applications
+   
+   ATM Applications
+   Billing Apllications
+   Claculator Applicatons
+   
+ 
+ two types applications
+ 
+ 1.Standalone Applications: which we we can run in our machine
+       vlc,antivirus(we can not share the dat across globe)
+ 
+ 2.Distributed Application:
+     by network
+	    gmail,facebook,insta-->network
+		    we can share the data
+			
+			
+ pop                                             oop
+procedure oriented lang                      object oriented lang 
+c,b,bcpl,fortran,cobolt..                      Lisp,java,python,.net.c++
+
+
+                        security & performance
+
+
+
+oops                                                         oopl
+object orineted progeramming system            object oriented progrraming lang
+
+features or methodologies
+
+  canadian org(omg)
+     object managament group
+
+
+
+oops features:
+==============
+
+1,Inheritance
+2.polymorphism----->performance
+3.Abstraction
+4.Encapsulation---->security
+
+
+
+
+1.platform independent
+2,garbage collection
+
+
+
+java:
+-------
+
+java is oop lang for the pupose of developing both standalone and distributed applications,
+
+
+james gosling-->1995-sun micro system
+
+
+oak-->java
+
+latest version 18
+
+
+standard jse 8
+
+
+11   17
+
+lts:long term support
+
+
+2009 copyryts oracle corp
+
+www.oracle.com
+
+
+prerequisites to write java program:
+===================================
+
+c program--c soft===turbo c
+
+cpp program--cpp software==turbo cpp 
+
+java program---java soft--jdk(java developemnt kit)8
+
+
+
+
+1.download jdk (jre+jvm)
+2.install
+3.editors(notepad,notepad++,eclipse,)
+4.save the file
+5.compile
+6.execute/run the program
+
+
+keywords 53 ==small case
+   2 unused(goto,constant)
+
+
+basic stsructure of java program:
+--------------------------------
+
+
+class Test{
+
+public static void main(String args[])
+{
+
+System.out.println("welcome to java");
+
+}
+}
+
+
+
+
+
+extension
+
+.html
+.py 
+.txt
+.java
+
+
+
+
+.java
+.class
+compilation
+execution
+jvm
+
+
+              compiler
+.java<========================>.class
+         compilation
+		 
+		 
+
+syntax: javac filename.java 
+
+
+syntax: java classname
+
+
+
+
+
+platform independt:
+--------------------
+java 
+         pi (wora) write once run anywhere
+windows------------------------->linux
+                                    .class
+.class 
+
+
+.net 
+                 pd
+windows------------------------->windows
+.class                             .class
+
+
+
+Garbage Collection:
+------------------
+
+int age=56;  //4bytes
+
+
+1000 variables   4000bytes
+
+
+1 vairbale--->4bytes
+
+
+unused memory space garbage collector(performance)
+
+
+
+c++:  we need to program
+
+=================================28-09-22===================================
+variables:
+---------
+
+variable is a container or location where we are storing our values.
+
+
+syntax:    datatype variablename= value/data;
+
+              int age=89;
+			  
+			int  sathya=897654;
+
+
+datatype:
+-----------
+
+the type of data which we are storing in variable
+
+
+two types
+
+primitive data types (8)                             non-primitive dt
+
+byte                                                String,Array,object
+short
+int 
+long------>to store numbers
+float
+double------->to store decimal values
+char------>tostore charecters
+boolean------>to store logical values
+
+
+cuz of size diff
+
+
+byte    ->1 byte =8bits
+
+range:-128 to 127
+
+byte b=123;  //valid
+byte b=128;  //invalid
+
+Range: -(2)*n-1  to 2*(n-1)-1
+
+n=number of bits
+
+-128 to 127
+
+                                            
+short---2bytes
+int --------------4bytes
+long------>8bytes
+float------------->4byts
+double------->8bytes
+char------>2bytes
+boolean------>depends on jvm
+
+
+dataype variablename=value;
+
+
+varaible are two type:
+===================
+
+1.local variable : we can declare within the method out side the class 
+2.global variable:we can decalre within the class outseide the method
+      i.instance varaible : without static keyword
+	  ii.static variable :with static keyword
+
+
+
+class Test{
+
+static String schoolname="helloworld";  //static variable
+
+int salary=6700;     //instnace variable
+
+public static void main(String args[])
+{
+
+int age=67;  //local variable
+}
+}
+
+
+4 differences properties:
+------------------------
+
+
+1.syntax 
+
+if it is static with static key word : ex: static String clgname="srt";
+
+without static keyword  ex:  int age=67;
+
+2.memory allocation
+
+static properties will get memory space @tym of class loading into jvm
+instance properties will get memory space @tym of object creation
+
+3. how to access//how to call
+
+static properties will access by using classname
+instance properties will acces by using ObjectReference
+
+4.when to access
+satic property: common property : static schoolname
+instance: unique   :employeeId
+
+
+
+autocompiled-->
+
+
+OBJECT CREATEION:
+--------------
+
+CLASSNAME objectreference=new Constructor;
+
+Test obj=new Test();
+
+not executable
+
+single line comments ://
+
+
+multiline commnts:   /* d */
+
+
+====================================29
+methods:
+---------
+method is the location where we can write our logic to perform some action
+
+
+main method 
+
+
+public static void main(String args[]){}
+syntax:
+
+accessmodifier  returntype methodname(argments)    //method head or method signature
+{
+
+//body
+}
+
+
+public int addofTwo(int a,int b)
+{
+
+return a+b;
+}
+
+
+
+public void display()          //instance method wo rtrn type wo params
+{
+Syso("i am dispaly method");
+}
+
+public static void hello()   // static method wo rtntype wo params
+{
+
+syso("i am hello method");
+}
+
+
+public int add(int a,int b)  // insatne method wr wp 
+{
+   return a+b;
+
+}
+
+
+public static float sub(flaot a,flaot b) //static 
+{
+
+
+return a-b;  
+
+}
+
+
+public void mul(int a,int b){
+
+  Syso(a*b);
+}
+
+public sattic void div(int a,int b){
+
+  Syso(a/b);
+}
+
+=============================================30-09-22=====================
+
+Constructor:
+---------------
+
+syntax method: accessmodifier returntype methodnmae(){}
+
+
+constructor:   accessmodifier  classname(){}
+
+
+
+
+classname objectreference= new classname();
+
+the main objective of constructor to intilize the values
+
+
+
+
+it is same as like class name
+constrcutor is special member method
+constaructor wont return anything even void also
+
+it is mandetory to write initilization logic inside the constructor
+
+int a;  //declaration
+
+a=67; //assigning
+
+int a=65; //initilization 
+
+
+with method:
+--------------
+package com.variables;
+
+//without constructor
+public class StudentEx {
+
+	int stid;  //0
+	String stname;//null
+	
+	void assign() {
+		
+		stid=100;
+		stname="sai ram";
+	}
+	
+	void display() {
+		System.out.println(stid+" "+stname);
+	}
+	
+	public static void main(String[] args) {
+		
+		StudentEx st= new StudentEx();
+		
+		st.assign();  //explicitly method calling
+		st.display(); //100 sairam
+		
+		
+	}
+}
+
+
+with constructor:
+-------------------
+
+package com.variables;
+
+//with constructor
+public class StudentEx {
+
+	int stid;  //0
+	String stname;//null
+	
+
+	public StudentEx() {  //default constructor
+		
+		stid=200;
+		stname="sravya";
+	}
+	
+	void display() {
+		System.out.println(stid+" "+stname);
+	}
+	
+	public static void main(String[] args) {
+		
+		StudentEx st= new StudentEx();
+		
+		
+		st.display(); //100 sairam
+		
+		
+	}
+}
+
+
+construrs are two types:
+--------------------------
+
+1.default construtor/predefined constructor 
+2.parameterized construtor
+
+
+
+
+ flow controls:
+ --------------
+ 
+ satement1
+ saat2----------9times
+ st3
+ st4-------6
+ st5-----------------------10times
+			
+it will control the flow of programming
+
+1.desicion making: 
+
+2.looping statements :
+
+3, jump statements :
+===============================03-10-22===========================
+
+
+command line argments:
+-------------------
+
+
+public static void main(String args[]){}
+
+int age=67;  // valid
+
+int age=56,45;  //inavalid
+
+arrays:
+---------
+
+
+*its always stsrts with index number /0
+*we can write only homogenous data /same type
+*array sizeis fixed
+
+int ages[]=new int[6];
+
+array size is=6
+
+array index size:5
+
+array size n 
+array index size: n
+
+
+
+byte ------------------------Byte
+short------------Short
+int-----------Integer
+long===========Long
+double-------
+float 
+char 
+boolean
+
+=========================================04
+
+
+
+Scanner is class present in java.util package 
+
+
+
+scanner has next()methods
+
+
+
+
+
+
+oops                                            oopl 
+oopsystem                                ooplanguage
+
+features or methodologies                   which are using oops featires
+                                           lisp
+1.inheritance
+2.polymorphism-----
+3.abstaraction
+4.Encapsulation----
+
+omg(object managent group)
+
+
+class?   bluprint
+
+collection of variables ,methods,constructors, objects
+
+ex:have u seen a car?        we can see types cars
+
+DNA---------------NUM OF PERSONS
+CAR BLUPRINT------------->NUM OF CARS
+
+
+OBJECT: INSTANCE OF A CLASS
+
+
+
+DOG: STATE ND BEHAVIOUR:  BROWN  ND WAGGING TAIL
+
+
+
+
+
+REFERENCE?
+
+
+
+
+inheritance;
+-----------
+aquring properties from parent to child class 
+super class to sub class 
+base class to derived class
+
+=================================>extends and implements
+
+"code reusebility"
+
+OLD PROJECT
+
+{
+
+//1000 METHODS
+//200 VARAIBLES
+
+}
+
+
+new project  extends Oldproject{
+
+
+//20 methods
+//1000m
+//200 v
+
+ 
+}
+
+
+5 types:
+
+
+1.single level   1p1c
+2.multi level inhertance 1gp1p1c
+3.hirarchial inheritance 1p2c
+4.hybrid inheritance ==============combination of any two inheritance(Asignment)
+5.Multiple inheritance=======>2p1c==>not possible n java levale: interface level
+
+
+extends implements
+================================================8
+
+Abstraction:
+--------
+hiding the data showing the functionality
+
+two ways we can achive:
+-----------------
+1.Abstarct class 0 to 100%
+2.Interface  100%
+
+normal:
+========
+class we have only implemented or concrete methods.
+
+Abstarct class :
+---------------
+it is combination of both impelemeted and unimplemented or non concrete method methods
+
+
+interface: 100%
+------
+
+interface is blueprint of a class 
+
+
+normal class we have only implemented methods 
+
+interface we have only unimplemented methods 
+   by defalut methods are public abstract
+
+
+interface          abstract 
+
+
+class to abstarctclass=======>extends
+class to interface===>implents
+interface to class===>implements
+interface to interface===>extends
+
+
+
+==========================================10-10-22=======================
+polymorphism:
+---------------
+
+
+poly------>many
+
+morphism---->forms
+
+a man can do many tasks at a single time 
+
+in java we have + operator 
+
+12+13=========>25
+
+12+"sravya"=========>12sravya
+
+
+operator overloading
+
+
+
+1.methodOvERLOADING
+2.mETHOD oVERRIDING
+
+
+
+METHOD OVERLOADING:
+--------------------
+
+METHOD NAME IS SAME SIGNATURE DIIFEERENT
+
+public void hello(int a)  //method head or method signature
+
+METHOD NAME IS SAME SIGNATURE DIIFEERENT
+                    no of params are different
+					type of params are different 
+					order of params are different
+
+overriding:
+---------===
+
+method name is same implementation is different 
+
+as a child he is not satifying with parent class implemntion hea can override and he can 
+ change  the implemntation.
+ 
+ 
+ ============================11-10-22========================
+ keywords:
+ ---------
+ 
+ 53
+ 
+ 
+ this: this is keyword it is used to represent current 
+                     class properties(variables,methods,constructors,objects)
+ 
+ super:  super is a keyword it is used to represent parent class 
+             properties(varaibls,metgods,constructos)
+ 
+ 
+ final:final is a keyword we can use in three places varaibles,methods,classess
+ 
+ 
+ 
+ 
+ packages:
+ ---------
+ 
+ two types 
+ 
+ built in : java.lang,java.awt,java.io.java.util,
+ user defined:
+ 
+ easialy maintaince
+ removes naming collision
+ 
+ syntax: javac -d filename.java 
+ 
+ syntax: java packagename.clasname
+ 
+ ======================================12
+ access modifers:
+ ---------------
+ keywords are in java 
+ 
+ public private default protected 
+ 
+ non-access modifeirs:
+   static,abstract,syncronized,volatile,transit
+ 
+ 
+ 
+ Encapsulation:
+ -------------
+ 
+ group of private members with corresponding public methods
+ 
+ 
+ 
+ private empid;  soap //2methods
+ private empname;
+ 
+ //getters and setters
+ 
+ 
+ ======================================14
+ 
+ 
+ ==================================Arrays==============================
+ 
+ int age=34;  //valid
+ 
+ int marks=34,12; // invalid 
+ 
+ ==>it can allow only similiar kind of data 
+ =>array size is fixed
+ 
+ 1. by litteral way 
+ 
+ 
+ 2. by using new keyword 
+ 
+  datataype variablename[]= new datatype[size];
+  
+  int ages[]= new int[];
+  
+  
+ 
+ 
+ 
+array size 3    index size is 2
+           7                  6
+		   19                 18
+		   n                   n-1
+
+
+================================Strings,String buffer,StringBuilder===========================
+
+
+String?
+
+string is class also non primitive its present in java.lang package 
+
+String name="sathya";
+
+____++++++ string is immutable
+
+
+1.litteral way 
+
+
+
+
+
+2.by new key word 
+
+
+=============================================================17
+
+files i/o:
+:------
+
+
+File f= new File("welcome.txt");
+
+f.createNewFile();  //handle expection
+
+f.mkdir();
+
+
+if we want write information into the file we have three classess
+
+1.FileWriter
+2.BufferedWriter
+3.PrintWriter
+
+to read the information
+
+1.FileReader
+2.BuffredReader
+
+==============Exception Handling==================
+
+sysdba6419
+
+1.without exption handling
+  1.abnormal termination
+  2.system defined error messages
+
+1. with exption handling 
+    2.normal termination
+	3. user friendly messages
+
+
+1.compile time errors:
+ those errors which are occuring bcz of poor understanding about lang:
+2. run time errrors
+                                     user invalid input
+
+
+expection:
+
+1.checked exception
+2.unchecked exception 
+3.error
+
+                                    Object 
+                                    
+
+									Throwable 
+predefined                                                   user defined
+
+asynch                         synch
+
+error                         checked                                unchecked 
+java.lang.error              java.lang.Exception                     java.lang.Runtimeexception
+
+ out of memory 
+ virtual machine            
+ internal error 
+ 
+
+5 key words 
+
+=========================================18
+try,catch,finally,throw,throws
+
+try:
+---
+
+error code 
+
+try{
+//error  : exception 
+}
+catch(Exception sathya){
+       Ssyo("");
+}
+
+==============================================19
+
+throw,throws:
+-----------
+
+throw is a kw it is used to throw an exception in the mthod or block
+
+throws is a kw it is used to declare ana excepti along the method signature 
+
+
+
+throw is a kw it is fowwed by an instance 
+throws is kw follwed by class names of exception 
+
+trow is used within the method 
+throws is usedmethod signature 
+
+we can throw only one exception at a time
+we can throws multiple exception
+
+
+
+================================================20================================
+
+
+multithreading:
+-----------------
+                                   multitasking
+								   
+					executing several tasks simulteniously is called
+					
+			process based                                   thread based 
+			
+			
+process based:
+			executing several tasks simulteniously where each task seperate indipendent different task.
+			
+			ex: listening songs in vlc,downloding file chrome,writing the code in notepad++
+			
+		:os level	
+			
+			
+thread based :
+executing several tasks simulteniously where each task seperate indipendent of same program.
+
+ex: 10000    5000 5000
+
+:programatic level 
+
+
+hel
+
+
+process heavy weight           thread is light weight process
+
+thread:
+--------
+two ways we can create a thread 
+
+1.by extending Thread class 
+2.by implementing Runnable interface(single abstract method)(function interface)
+
+
+
+start()--->
+
+1.it will perform madetory operations
+2.regiter with the thread sheduler
+3.executing the run() method
+
+
+Thread scheduler:
+--------------
+
+123456
+=================================================21
+
+thread names
+
+BOTH PRIORITY IS SAME 
+
+
+yield()
+join()------------>t1 t2(10000ms)
+sleep()
+
+
+
+      --->8             9 8 5 6 3 6  8
+	  
+	  
+synchronization:
+-------------------
+===========================================================26
+
+Arrays:
+========
+
+int age=78;   //valid
+
+int marks=89,56;  //invalid
+
+
+arrays 
+:
+
+*we can store multiple values in single varible
+*we can store only similer kind of data 
+*arrays are fixed in size .
+
+
+
+
+dis:
+---
+*size is fixed 
+
+
+
+
+*two ways 
+
+1.by litterqal way 
+2.by using new keyword 
+
+
+
+
+
+syntax:
+----------
+
+datataype variblenmae[]=new datatype[size];
+
+int age[]=new int[3];
+
+
+
+
+array size 8    array index size 7
+array size 90   array index size 89
+
+array size is n  array index size n-1 
+
+collections:
+------------
+
+Collection--------->interface 
+
+Collections ---------->class 
+
+
+list:
+------
+List li= new List(); //invalid 
+
+List lil= new ArrayList(); //valid 
+
+*it will allow both homogenious nd hetro genious data 
+*duplicates are also allowed
+*insertion order is preserved
+*null insertion is also possible 
+
+
+
+1.ArrayList
+2.linledlist
+3.vector
+4.stack
+
+
+
+
+cc*3/2+1=16
+
+====================================================================27
+
+whenever our freqent operations are searching/retriving will go for arraylist
+
+  since it is using internally implemnts RandomAccess
+  
+  if our frequnt operations are insertion/deletion/updation will go for linked list 
+  
+   since it follwos internally doubly linked list algorithm
+
+
+generics:
+---------
+
+these generics collections allow the datatypes to pass as parameters to classess 
+
+
+
+
+
+cursors:
+-------
+
+1.enumeration
+2.iterator
+3.listiterator
+
+
+==========================================================================28
+
+set :
+---
+duplicates are not allowed
+insertion order is not preserved 
+
+hashset
+linkedhashset
+tree set
+
+================================================================================31
+
+java 8 features:
+---------------
+
+2014march 18th
+
+python R scala 
+
+
+enabling functional programming in java to concise the code 
+
+1.Lamda expression
+2.Functional interface
+3.Default methods and static methods 
+4.predefined functional interface
+  predicate
+  functionsupplier
+  consumer
+5.streams
+6.date and time api
+
+
+Lamda expression:
+------------------
+
+
+1930 mathematiics   lisp==>
+
+python,lisp,c c++.ruby.scala.finally in java
+
+thhe main objective of lamda expresion is to bring benifts of functional programming into jav 
+
+
+what is lamda epxresion:
+---------------
+it is annonymous(nameless) function 
+
+namesless
+without return type 
+without modifiers
+
+
+without lamda expression:
+-------------------------
+
+
+public void m1(){
+   System.out.println("welcome");
+}
+
+
+
+
+
+with lamda:
+------------
+
+ ()->{System.out.println("welcome");}
+ 
+ ()->System.out.println("welcome);
+
+
+without lamda:
+---------------
+public void m2(int a,int b){
+
+  System.out.println(a+b);
+}
+
+
+with lamda:
+------------
+
+(int a, int b)->{system.out.println(a+b);}
+
+or 
+
+(a,b)->System.out.println(a+b);
+
+
+without:
+--------
+
+public int square(int n){
+
+  return n*n;
+}
+
+
+
+
+lamda:
+------
+
+
+(int n)->{return n*n;}
+
+
+(n)->{return n*n;}
+
+n->n*n;
+
+
+
+n->return n*n;---->invalid
+n->{return n*n};---->invalid
+n->{return n*n;};-->invalid
+n->{n*n};---------->valid
+
+
+
+
+
+public void m3(String s){
+   return s.length();
+   
+   
+}
+
+
+s->s.length(); ------->by using lamda 
+
+
+
+
+FuNCTIONAL Interfaces:
+---------------------
+Runnable--------------->run()
+Comaprable----------compareTo(()
+Comparator---compare()
+ActionListener-actionaPerformance()
+Callable-call()
+
+the purpose functional interface to call lamda expression 
+
+@fUNCTIONAL iNTERFACE
+interface A{
+
+PUBLIC VOID M1();
+}
+@Functional iNTERFACE
+interface B extneds A{
+
+
+
+}
+
+predefined fi:
+---------
+predicate
+  function
+  supplier
+  consumer
+
+
+=====================================================================01-11-22
+
+
+streams:
+-------
+if we want to rpresent group of object as a single entity is called collections 
+
+if we want to process objects from the collection then we go for streams
+
+
+
+
+(s1,s2)->s1.compareTo(s2)------------>natural sorting order
+(s1,s2)->s2.compareTo(s1)--------reverse sorting order
+(s1,s2)->s1.compareTo(s2)---->reverse sorting order
+
+
+
+Date and time:
+--------------
+util package 
+
+
+
+
+
+jodha time API
+
+
+==============================================================================02-11-22
+
+
+collection:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

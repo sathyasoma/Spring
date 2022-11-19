@@ -1,0 +1,247 @@
+
+
+***tutorials.point***
+====================
+
+JAVA DESIGN PATTERNS:
+=======================
+=========================
+*Design patterns are solutions to general problems that software developers faced during 
+     software development.
+*These solutions were obtained by trial and error by numerous software developers over 
+    quite a substantial period of time.
+	
+What is Gang of Four (GOF)?
+=====================
+In 1994, four authors 
+
+1. Erich Gamma,
+2.Richard Helm 
+3.Ralph Johnson 
+4.John Vlissides
+
+  published a book:
+     *Design Patterns - Elements of Reusable Object-Oriented Software
+	      *this book represent concepts of design patterns in software development.
+
+*These gang of four collectivly say: its principles of "oop design".
+
+    1. Program to an interface not an implementation
+
+    2. Favor object composition over inheritance 
+	
+	
+Usage of Design Pattern:
+=======================
+Design Patterns have two main usages in software development.
+
+Common platform for developers:
+=================================
+ * design patterns provide standard terminology. and perticular scenorio.
+    ex: singletone design pattern use single object for all developers.
+Best Practices:
+===============
+*These design patterns provide best solutions in software development.
+
+
+Types of Design Patterns:
+=========================
+we have 23 design patterns 
+   they are classified as 3 categories.
+        1. Creational design pattern 
+		2. Structural design pattern
+
+Creational Patterns:
+====================
+This pattern provide a way to create the object.
+  at the same time hiding the creation logica nd crate the object by using new keyword.
+  this patterns give more flexibility. decide and creating the objects.
+Structural Patterns:
+====================
+*These design patterns concern class and object composition.
+*Concept of inheritance is used to compose interfaces 
+শ্*compose objects to obtain new functionalities.
+compose objects to obtain new functionalities.
+
+Behavioral Patterns:
+====================
+These design patterns are specifically concerned with communication between objects.
+
+
+Creational Design Patterns
+§ Abstract Factory
+§ Builder
+§ Factory Method
+§ Prototype
+§ Singleton
+
+Factory Pattern:
+==============
+Factory pattern is one of the most used design patterns in Java
+ it provides best way to create the object.
+ 
+ 
+ In Factory pattern, 
+ we create object without exposing the creation logic to the client
+ and refer to newly created object using a common interface.
+
+Abstract Factory:
+================
+*Abstract Factory patterns work around a super-factory which creates other factories.
+*This factory is also called as factory of factories.
+*this pattern also best way to create the object.
+
+interface is responsible for creating a factory of related objects without
+   explicitly specifying their classes.
+Each generated factory can give the objects as per the Factory pattern.
+
+Singleton pattern :
+=================
+it is one of the simplest design pattern in java.
+This pattern involves a single class which is responsible to create an object
+This class provides a way to access its only object 
+  without need to instantiate the object of the class.
+  
+  
+  Builder pattern :
+  ================
+builds a complex object using simple objects and using a step by step approach.
+A Builder class builds the final object step by step. 
+This builder is independent of other objects.
+
+
+Prototype pattern:
+==================
+refers to creating duplicate object while keeping performance in mind.
+involves implementing a prototype interface which tells to create a clone of the current object.
+This pattern is used when creation of object directly is costly. 
+
+Structural design patterns:
+=========================  
+  Adapter pattern :
+  ================
+ works as a bridge between two incompatible interfaces.
+ involves a single class which is responsible to join functionalities of independent
+  ex: case of card reader
+  
+Bridge Pattern:
+================
+when we need to decouple an abstraction from its implementation so that the two can vary independently. 
+This pattern involves an interface which acts as a bridge which makes the functionality 
+   of concrete classes independent from interface implementer classes.
+Both types of classes can be altered structurally without affecting each other.
+
+Filter pattern or Criteria pattern:
+==================================
+design pattern that enables developers to filter a set of objects using different criteria 
+  and chaining them in a decoupled way through logical operations.
+  
+Composite pattern:
+==================
+is used where we need to treat a group of objects in similar way as a single object.
+Composite pattern composes objects in term of a tree structure to represent 
+    part as well as whole hierarchy. 
+pattern creates a tree structure of group of objects.
+This pattern creates a class that contains group of its own objects. 
+  This class provides ways to modify its group of same objects.
+Decorator pattern:
+=================
+allows a user to add new functionality to an existing object without altering its structure.
+This pattern creates a decorator class which wraps the original class and provides additional
+    functionality keeping class methods signature intact.
+Flyweight pattern:
+=================
+is primarily used to reduce the number of objects created and to decrease memory footprint 
+   and increase performance.
+Flyweight pattern tries to reuse already existing similar kind objects by storing them and 
+  creates new object when no matching object is found. 
+We will demonstrate this pattern by drawing 20 circles of different locations but we will create only 5 objects 
+	 Only 5 colors are available so color property is used to check already existing Circle objects.
+
+  
+  
+Behavioral Patterns:
+-------------------
+
+Command Pattern:
+----------------
+*Command pattern is a data driven design pattern.
+*A request is wrapped under an object as command and passed to invoker object.
+*Invoker object looks for the appropriate object which can handle this command 
+    and passes the command to the corresponding object which executes the command.
+
+
+Interpreter pattern:
+------------------
+* provides a way to evaluate language grammar or expression.
+শ্ৰThis pattern involves implementing an expression interface 
+  which tells to interpret a particular context. 
+শ্ৰThis pattern is used in SQL parsing, symbol processing engine etc.
+
+Iterator pattern :
+================
+This pattern is used to get a way to access the elements of a collection object
+      in sequential manner without any need to know its underlying representation.
+	  
+Mediator pattern:
+=================
+is used to reduce communication complexity between multiple objects or classes.
+*This pattern provides a mediator class which normally handles all the communications
+   between different classes and supports easy maintenance of the code by loose coupling. 
+*Mediator pattern falls under behavioral pattern category.
+
+Memento pattern:
+===============
+Memento pattern is used to restore state of an object to a previous state. 
+   Memento pattern falls under behavioral pattern category.
+   
+Observer pattern:
+================
+*is used when there is one-to-many relationship between objects such as if one object 
+    is modified, its depenedent objects are to be notified automatically. 
+	    Observer pattern falls under behavioral pattern category.
+
+State pattern:
+==============
+State pattern a class behavior changes based on its state. 
+      This type of design pattern comes under behavior pattern.
+* we create objects which represent various states and a context object whose behavior 
+     varies as its state object changes.
+
+Template pattern:
+===================
+ an abstract class exposes defined way(s)/template(s) to execute its methods.
+ *Its subclasses can override the method implementation as per need but the 
+        invocation is to be in the same way as defined by an abstract class. 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

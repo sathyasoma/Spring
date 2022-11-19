@@ -1,0 +1,478 @@
+
+
+December 1996 javabeans
+march 1998 ejb was published
+
+2002 Rod jhonson spring =====>>>>>
+
+2009 sold to vmWare
+
+
+
+
+Spring Framework:(version 5)(rod jhonson)
+-----------------
+the main objective is with in less time we can make enterprose applications.
+
+
+                        light weight/heavy weight
+						
+						loosely coupled/tightly coupled
+						
+						invasive/ non-invasive
+						
+						
+						
+Spring is a non- invasive framework by using spring we can make light weight and 
+	loosly coupled applications
+						
+=POJO classes(we can say beans, entity)
+   plain old java object
+     in spring we are going to work with pojo your application become light weight.
+	 
+
+heavy weight:
+------------
+if you want crete web application ( run on server)
+  in java the 1st web application to develeop we used "servlets" technology
+    before spring we have Ejb
+	
+	if you want create web application by using serveltes
+	      your class should extends predefined classes
+	
+	class Login extends HttpSertvlet(11 abstrcat methods)
+	{
+	
+	11 methids come to your classs
+	
+	
+	}
+	
+	* if i have 100 classes we need to extends those methods then 1100 methds is there
+	
+	bcz of those methods your application should be heavy weight
+*bcz of thet we can say servlet is the heawy weight component, it will force to the prograamer 
+to implemt the predefined api.
+
+*spring will never force to the progrramer to implement predefined methdos.
+
+
+frame works:
+  hibernate, spring,struts,jsf
+  
+  invasive frame works: struts 
+  
+  non invasive:  spring, hibernate
+ 
+ 
+what ever application we did those are tightly coupled applications.
+            
+  tightly coupled:
+  ====================
+			      
+				  class Employee{
+				       int eid;
+					   String ename;
+					   
+					   void display(){
+					     Sop(eid+" "+ename);
+					   }
+				  }
+				 
+				 
+				 
+				 
+				 class Test{
+				 
+				     void m1(){
+					 
+					 Employee emp= new Employee();
+					          
+							  emp.display();
+					 }
+					 
+				    main(String argas[]){
+				     
+					 }
+				 }
+   * if i want execute my test class m1 method 1st we need to excute display method . but it is 
+ depend on employee class,
+              this kind we can say Test class highly depend on Employee class
+ 
+ 
+ 
+ 
+ with spring we are going to create loosly coupled applications.
+            
+   spring will avaoid dependency, not depend
+          spring container will create the object 
+		     container is responsible fro crete,manage the object
+
+	
+
+spring we have 20 modules
+
+spring core/ioc/dependency injection module
+
+spring jdbc
+
+spring orm
+
+spring aop
+
+spring security
+
+
+
+spring is a frameworks of frame work
+   we can intigrate spring and hibernate
+                                jpa
+								jdbc
+								
+spring container is interface.
+   spring has 2 containers
+   
+          BeanFactory        (lazy or basic appliations)
+          ApplicationContext	(advanced or large scale applications)	egar  
+                    
+we have two containers but pupose is same, then what is the diff 
+ 
+ 
+to get the functionality  we need the dependencies(jars)
+
+
+
+how to inject the data
+  2 ways
+    setter injection  <property>
+	constructor injection   <constructor-arg>
+	
+	
+
+public class Employee {
+	private int empId;
+	private String empName;
+	private int empSal;
+	private String empAdd;
+	
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public int getEmpSal() {
+		return empSal;
+	}
+	public void setEmpSal(int empSal) {
+		this.empSal = empSal;
+	}
+	public String getEmpAdd() {
+		return empAdd;
+	}
+	public void setEmpAdd(String empAdd) {
+		this.empAdd = empAdd;
+	}
+	public Employee(int empId, String empName, int empSal, String empAdd) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.empSal = empSal;
+		this.empAdd = empAdd;
+	}
+public Employee() {
+	// TODO Auto-generated constructor stub
+}
+	
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empSal=" + empSal + ", empAdd=" + empAdd + "]";
+	}
+	
+}
+
+Test class:
+---------
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+public class Test {
+	public static void main(String[] args) {
+		
+		Resource resource=new ClassPathResource("springconfig.xml");  
+	     
+		BeanFactory factory=new XmlBeanFactory(resource);  
+		
+		
+		
+	//ApplicationContext factory=new ClassPathXmlApplicationContext("springconfig.xml");
+		
+	Employee emp = (Employee) factory.getBean("employee"); // casting here
+	
+	System.out.println(emp); //object name print
+	
+	
+		
+	}
+
+}
+
+
+config class:
+-------------
+
+<beans
+ xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+
+<bean class="Employee" id="employee">  
+
+<property name="empId" value="123"></property> 
+<property name="empName" value="soma"></property> 
+<property name="empSal" value="154021"></property> 
+<property name="empAdd" value="hyd"></property> 
+
+</bean>
+
+</beans>
+
+
+example2:
+==============>>>>>
+
+
+employee:
+--------
+
+
+public class Employee {
+
+	 int empId;
+	 String empName;
+	 int empSal;
+	 Address address;
+	 
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public int getEmpSal() {
+		return empSal;
+	}
+	public void setEmpSal(int empSal) {
+		this.empSal = empSal;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+	public Employee(int empId, String empName, int empSal, Address address) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.empSal = empSal;
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empSal=" + empSal + ", address=" + address
+				+ "]";
+	}
+	
+	
+	
+}
+
+
+Address:
+----------
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
+public class Address {
+	
+	int houseNum;
+	String street;
+	String state;
+	
+	public int getHouseNum() {
+		return houseNum;
+	}
+	public void setHouseNum(int houseNum) {
+		this.houseNum = houseNum;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	
+	public Address() {
+		// TODO Auto-generated constructor stub
+	}
+	public Address(int houseNum, String street, String state) {
+		super();
+		this.houseNum = houseNum;
+		this.street = street;
+		this.state = state;
+	}
+	@Override
+	public String toString() {
+		return "Address [houseNum=" + houseNum + ", street=" + street + ", state=" + state + "]";
+	}
+	
+
+	}
+
+
+
+Client:
+---------
+
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+public class Client {
+
+public static void main(String[] args) {
+		
+		
+		
+		Resource resource= new ClassPathResource("springConfig.xml");
+		
+		BeanFactory factory= new XmlBeanFactory(resource);
+		
+		     Employee emp =(Employee) factory.getBean("employee");
+		     
+		     System.out.println(emp);
+		
+	}
+
+}
+
+
+
+confguration:
+------------
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean class="Employee" id="employee" autowire="byType" > <!-- autowiering -->
+	
+	<property name="empId" value="111"></property>
+	<property name="empName" value="sathya"></property>
+	<property name="empSal" value="55000"></property>
+  <!-- 	<property name="address" ref="add"></property> -->
+	
+
+	</bean>
+	
+	<bean class="Address" id="address">
+	
+	<property name="houseNum" value="458"></property>
+	<property name="street" value="sathish nagar coloy"></property>
+	<property name="state" value="telangana"></property>
+	
+	</bean>
+	
+</beans>
+
+
+
+
+example 3:
+-------------->(with autowiring)
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean class="Employee" id="employee" autowire="byType" > <!-- autowiering -->
+	
+	<property name="empId" value="111"></property>
+	<property name="empName" value="sathya"></property>
+	<property name="empSal" value="55000"></property>
+  <!-- 	<property name="address" ref="add"></property> -->
+	
+
+	</bean>
+	
+	<bean class="Address" id="address">
+	
+	<property name="houseNum" value="458"></property>
+	<property name="street" value="sathish nagar coloy"></property>
+	<property name="state" value="telangana"></property>
+	
+	</bean>
+	
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

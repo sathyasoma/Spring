@@ -1,0 +1,954 @@
+ spring framework --> 
+
+
+  spring is a lightweight framework.
+  
+  it provides support to various f/w such as struts,hibernate,ejb,jsf etc.
+  
+  
+  core
+  aop
+  orm
+  mvc
+  rest
+  data jpa
+  
+  ...
+  
+ ->ioc,dependencyinjection,beans,applicationcontext,...
+ 
+ spring 5.3.8
+ 
+ 
+ ->loosely coupling betweeen classes
+ 
+ ->tight coupling between classes
+ 
+ 
+ class Employee
+ {
+    Address address= new Address();
+	
+ }
+ 
+ 
+ class Employee
+ {
+    Address address;
+	
+	Employee(Address adderss)
+	{
+	this.address=address;
+	}
+ 
+ }
+ 
+ 
+ spring f/w -who will inject the dependency?
+ 
+  answer: spring ioc container
+  
+  
+ 
+
+ dependency injection:
+ 
+ ->makes the code loosely coupled so easty to maintain
+ 
+ -makes the code easy to test.
+ 
+ 
+ advantages of spring f/w:
+ 
+  1.loose coupling
+  2.easy to test
+  3.fast development
+  eclipse
+  
+  spring tool suite.
+  
+  (ide) --> spring related applications
+  
+  
+  
+ steps to create spring application:
+ 
+ the bean element is used to define the bean for the given class.
+ 
+ The property subelement of bean specifies the property of the student class
+ named name .
+ 
+ The value specified in the property element will be set in the Student class
+ object by the IOC container.
+ 
+ 
+ Student.java:
+ ````
+ package com.capg.beans;
+
+public class Student {
+	
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String toString()
+	{
+		return name;
+		
+	}
+
+	 public Student()
+	 {
+		 
+	 }
+	 public Student(String name)
+	 {
+		 this.name=name;
+	 }
+	 
+	 //business logic method
+	 public void displayInfo()
+	 {
+		 System.out.println("Hello "  + name);
+		 
+	 }
+}
+
+applicationContext.xml:
+`````
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id="studentBean" class="com.capg.beans.Student">
+
+  <property name="name" value="ram"></property>
+
+</bean>
+
+
+
+
+</beans>
+
+Test.java:
+`
+`package com.capg.spring;
+
+
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+    	
+    	Resource resource =  new ClassPathResource("applicationContext.xml");
+    	
+    	BeanFactory factory  = new XmlBeanFactory(resource);
+    	
+    	Student stu = (Student)factory.getBean("studentBean");
+    	stu.displayInfo();
+    	
+    	
+    }
+}
+
+
+Test.java(w.r.to ApplicationContext)
+`````
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+    	//runtime polymorphism
+    	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    	
+    	
+    	Student stu = (Student)context.getBean("studentBean");
+    	stu.displayInfo();
+    	
+    	
+    }
+}
+
+BeanFactory vs ApplicationContext:
+``````
+BeanFactory and ApplicationContext both are Java interfaces and 
+ApplicationContext extends BeanFactory. 
+
+Both of them are configuration using XML configuration files. 
+In short BeanFactory provides basic Inversion of control(IoC) and 
+Dependency Injection (DI) features while ApplicationContext provides 
+advanced features
+
+
+https://stackoverflow.com/questions/243385/beanfactory-vs-applicationcontext
+
+
+note:
+
+when we configure both setter injection and constructor injection
+ioc container will give the preference to setter based injection only.
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id="studentBean" class="com.capg.beans.Student">
+
+  <property name="name" value="ram-setter"></property>
+
+  <constructor-arg name="name" value="ram-constructor"></constructor-arg>
+
+</bean>
+
+
+
+</beans>
+
+
+App.java:
+`
+
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+    	//runtime polymorphism
+    	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    	
+    	
+    	
+    	Student stu = (Student)context.getBean("studentBean");
+    	stu.displayInfo();
+    	
+    	
+    }
+}
+
+
+using annotation based configuration:
+`````
+package com.capg.beans;
+
+import org.springframework.stereotype.Component;
+
+@Component("studentBean")
+public class Student {
+
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String toString() {
+		return name;
+
+	}
+
+	public Student() {
+
+	}
+
+	public Student(String name) {
+		this.name = name;
+	}
+
+	// business logic method
+	public void displayInfo() {
+		System.out.println("Hello " + name);
+
+	}
+}
+
+
+applicationContext.xml:
+````
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+<context:component-scan base-package="com.capg.beans"/>
+
+</beans>
+
+App.java:
+`
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+    	//runtime polymorphism
+    	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    	
+    	
+    	
+    	Student stu = (Student)context.getBean("studentBean");
+    	//setter based injection
+    	
+    	stu.setName("ram");
+    	stu.displayInfo();
+    	
+    	
+    }
+}
+
+
+
+using java based configuration:
+````
+Student.java:
+`
+package com.capg.beans;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Student {
+
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String toString() {
+		return name;
+
+	}
+
+	public Student() {
+
+	}
+
+	public Student(String name) {
+		this.name = name;
+	}
+
+	// business logic method
+	public void displayInfo() {
+		System.out.println("Hello " + name);
+
+	}
+}
+
+
+
+
+App.java:
+`
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Student stu =  context.getBean("studentBean",Student.class);
+    	
+    	
+    	stu.setName("ram");
+    	stu.displayInfo();
+    	
+    	
+    }
+}
+
+
+AppConfig.java:
+```
+package com.capg.spring;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.capg.beans.Student;
+
+@Configuration
+@ComponentScan(basePackages = "com.capg.beans")
+public class AppConfig {
+	
+	
+	@Bean(name="studentBean")
+	public Student getStudent()
+	{
+		return new Student("capg");
+	}
+	
+	
+	
+
+}
+
+
+
+ -> spring with pure xml 
+    <beans>,<bean>,<proeprty>,<cosntructor-arg>
+	
+ -> @Component for Student  + xml (to scan ) 
+ 
+ -> java based configuration (no xml file) -> AppConfig.java
+ 
+ 
+ 
+ 
+pom.xml:
+`
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.capg.spring</groupId>
+  <artifactId>spring-demo-1</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>spring-demo-1</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+	<maven.compiler.target>1.8</maven.compiler.target>
+    
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.0.2.RELEASE</version>
+</dependency>
+    
+    
+  </dependencies>
+</project>
+
+
+
+useful link:
+````
+--->http://javainsimpleway.com/configuring-spring-beans-without-xml/
+
+-->https://www.baeldung.com/spring-injecting-collections
+
+
+ ->spring ioc container 
+ 
+   -BeanFactory
+   -ApplicationContext
+      -ClassPathXmlApplicationContext
+	  -AnnotationConfigApplicationContext
+	  
+	  
+inheritance - is a realtion
+
+has -a  realtion - association
+
+
+
+ class Student
+ {
+   private String name;
+   private Address address;
+ 
+ }
+ 
+ class Address
+ {
+ 
+  private String cityName;
+  private String stateName;
+  private String countryName;
+ 
+ }
+ 
+
+Student.java:
+`
+package com.capg.beans;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Student {
+
+	private String name;
+ 
+	
+	
+	private Address address;
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public Address getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	public Student(String name, Address address) {
+		super();
+		this.name = name;
+		this.address = address;
+	}
+
+	public Student()
+	{
+		
+	}
+	
+	public String toString()
+	{
+		return name + " " + address;
+	}
+	
+	
+}
+
+Address.java
+`
+package com.capg.beans;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Address {
+	
+	private String cityName;
+	private String stateName;
+	private String countryName;
+	public String getCityName() {
+		return cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	public String getStateName() {
+		return stateName;
+	}
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+	public Address(String cityName, String stateName, String countryName) {
+		super();
+		this.cityName = cityName;
+		this.stateName = stateName;
+		this.countryName = countryName;
+	}
+	
+	
+	
+	public Address()
+	{
+		
+	}
+	@Override
+	public String toString() {
+		return cityName + " " + stateName + " " + countryName;
+	
+	}
+	
+}
+
+
+AppConfig.java:
+```
+package com.capg.spring;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.capg.beans.Address;
+import com.capg.beans.Student;
+
+@Configuration
+@ComponentScan(basePackages ="com.capg.beans")
+public class AppConfig {
+	
+	@Bean(name="student")
+	public Student getStudent()
+	{
+		return new Student();
+	}
+
+	@Bean(name="address")
+	public Address getAddress()
+	{
+		return new Address();
+	}
+	
+
+}
+
+
+App.java:
+```
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.capg.beans.Address;
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Student stu =  context.getBean("student",Student.class);
+        Address address = context.getBean("address",Address.class);
+        
+        stu.setName("rc");
+        
+    
+        
+        
+        
+        address.setCityName("hyd");
+        address.setStateName("wb");
+        address.setCountryName("india");
+        
+        
+        
+       
+       stu.setAddress(address);
+        
+        
+        
+        
+    	System.out.println(stu);
+    	
+    	
+    }
+}
+
+
+using @autowired annotation:
+````
+
+package com.capg.beans;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Student {
+
+	private String name;
+ 
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Autowired
+	private Address address;
+
+
+	
+
+	public Student(String name, Address address) {
+		super();
+		this.name = name;
+		this.address = address;
+	}
+
+	public Student()
+	{
+		
+	}
+	
+	public String toString()
+	{
+		return name + " " + address;
+	}
+	
+	
+}
+
+
+
+App.java:
+`
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.capg.beans.Address;
+import com.capg.beans.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Student stu =  context.getBean("student",Student.class);
+        Address address = context.getBean("address",Address.class);
+        
+        stu.setName("rc");
+    
+        address.setCityName("hyd");
+        address.setStateName("wb");
+        address.setCountryName("india");
+    
+    	System.out.println(stu);
+    	
+    	
+    }
+}
+
+injecting collection values:
+````
+
+https://www.baeldung.com/spring-injecting-collections
+
+ package com.capg.beans;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+public class CollectionsBean {
+
+    @Autowired
+    private List<String> nameList;
+
+    //business logic method
+    public void printNameList() {
+        System.out.println(nameList);
+    }
+}
+
+
+AppConfig.java:
+````
+package com.capg.spring;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.capg.beans.Address;
+import com.capg.beans.CollectionsBean;
+import com.capg.beans.Student;
+
+@Configuration
+@ComponentScan(basePackages ="com.capg.beans")
+public class AppConfig {
+	
+	@Bean(name="student")
+	
+	@Bean(name="collectionsbean")
+    public CollectionsBean getCollectionsBean() {
+        return new CollectionsBean();
+    }
+
+    @Bean
+    public List<String> nameList() {
+        return Arrays.asList("John", "Adam", "Harry");
+    }
+	
+
+}
+
+
+App.java:
+````
+package com.capg.spring;
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.capg.beans.Address;
+import com.capg.beans.CollectionsBean;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    
+
+	public static void main( String[] args ) throws Exception
+    {
+      
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        CollectionsBean cb =  context.getBean("collectionsbean",CollectionsBean.class);
+       
+        cb.printNameList();
+    	
+    	
+    }
+}
+
+
+how to inject normal java class object
+using @autowired
+how to inject collection type values
